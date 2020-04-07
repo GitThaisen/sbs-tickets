@@ -1,0 +1,133 @@
+.card {
+    float: left;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+    margin: 15px 9px;
+    height: 230px;
+    overflow: hidden;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.expand-current-value {
+    font-style: italic;
+    font-weight: normal;
+    color: rgba(37,38,39,0.7);
+    float: right;
+    text-align: right;
+    max-width: 350px;
+}
+.spacer {
+    float:left;
+    height:'2px';
+    width:-webkit-fill-available;
+}
+.grid-label {
+    width: 100%;
+    display: inline-block;
+    font-weight: bold;
+}
+.thumbPreview {
+    height: auto;
+    padding: 20px;
+    position: absolute; 
+    z-index: 2;
+    text-align: center;
+    border-color: rgba(0, 0, 0, 0.7);
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    border-radius: 10px;
+}
+
+.swatches {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    float: left;
+    margin: 2px;
+}
+
+.menuitem {
+    padding-left: 5px;
+    padding-top:10px;
+    padding-bottom:15px;
+    margin:5px;
+}
+
+.thumbnail {
+    width: 100%;
+}
+
+.title {
+    margin: var(--org-small);
+}
+.previewContent {
+    border: bottom 1px;
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 40px;
+}
+.previewPhoto {
+    width: auto;
+    max-height: 90vh;
+    max-width: 90vw;
+}
+.container {
+    overflow: hidden;
+    position: relative;
+}
+
+.pos-tl {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pos-br {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.pos-bl {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.pos-tr {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.rightsIcon {
+    padding-top: 1px;
+    padding-left:0.7px;
+    margin: 4px;
+    border-radius: 50%;
+    display: inline-flex;
+    width:1.5em;
+    height:1.5em;
+}
+
+.green {
+    background-color: var(--org-color-success);
+    color: var(--org-color-white)
+}
+
+.red {
+    background-color: var(--org-color-error);
+    color: var(--org-color-white)
+}
+
+.yellow {
+    background-color: var(--org-color-warning);
+    color: var(--org-color-black)
+}
