@@ -1,13 +1,11 @@
 import React from 'react';
-import { OrgImage } from '@nrk/origo/jsx';
-
+import FormInput from './formInput'
 
 const Frontpage = () => {
       return (
             <div className="org-root">
-                 <h1>Tickets...</h1>
-                 <OrgImage/>
-            </div>
+            <FormInput/>
+        </div>
       )
 }
 

@@ -1,0 +1,52 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  imageName: 'sbs/ticket'
+  containerRegistry: 'plattform.azurecr.io'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  
+  - task: Docker@2
+    inputs:
+      containerRegistry: $(containerRegistry)
+      repository: 'sbs/ticket'
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
+      arguments: '--build-arg NPM_TOKEN=$(NPM_TOKEN)'
+      tags: |
+        $(tag)
+  - task: Docker@2
+    displayName: Push image
+    inputs:
+      containerRegistry: $(containerRegistry)
+      repository: 'sbs/ticket'
+      command: push
+      tags: |
+        $(tag)
+
+  - bash: |
+      #/bin/bash
+      BuildId="$BUILD_BUILDID"
+      sed -i "s/BUILDNUMBER/$BuildId/g" ./kubernetes.yml
+      cat ./kubernetes.yml
+    displayName: 'Update manifest with build number'
+
+  - task: KubernetesManifest@0
+    inputs:
+      action: 'deploy'
+      kubernetesServiceConnection: 'plattform-aks-platform-intern-we-sbs-dev-1585824333532'
+      namespace: 'sbs-dev'
+      manifests: '**/kubernetes.yml'
+      containers: '$(containerRegistry)/$(imageName):$(tag)'

@@ -1,8 +1,10 @@
 import path from 'path'
 import express from 'express'
 import bodyParser from 'body-parser'
-import setImagesRoutes from './routes/images';
-import setImagesDataRoutes from './routes/imagesData';
+import setTicketApi from './routes/ticketApi.js'
+const { HealthCheck } = require('@nrk/healthcheck');
+
+const health = new HealthCheck('ticket', {});
 
 const app = express(),
             DIST_DIR = __dirname,
@@ -25,8 +27,18 @@ app.get('/', (req, res, next) => {
 
 const PORT= process.env.PORT || 80;
 
+app.get('/health', (req, res) => {
+  const report = health.report();
+  if (report.status === 'failed') {
+    res.status(500);
+  } else {
+    res.status(200);
+  }
+  res.send(health.report());
+}
+);
+
 app.listen(PORT, () => {
     console.log("App listening on port " + PORT)
-    setImagesRoutes(app);
-    setImagesDataRoutes(app);
+    setTicketApi(app);
 });
