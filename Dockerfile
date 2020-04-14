@@ -6,6 +6,8 @@ ARG NPM_TOKEN
 
 COPY package*.json ./
 COPY webpack*.js ./
+COPY /src/client/index.js ./src/client/indexjs
+COPY /src/server/server-prod.js ./src/server/server-prod.js
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /usr/src/app/.npmrc
 RUN npm install
