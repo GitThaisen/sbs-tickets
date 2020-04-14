@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 ARG NPM_TOKEN
 
 COPY package*.json ./
+COPY webpack*.js ./
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /usr/src/app/.npmrc
 RUN npm install
