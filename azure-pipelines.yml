@@ -17,7 +17,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: npm run build:prod
   - task: Docker@2
     inputs:
       containerRegistry: $(containerRegistry)
