@@ -17,7 +17,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: '**/'
+      customCommand: 'run build:prod'
   - task: Docker@2
     inputs:
       containerRegistry: $(containerRegistry)
