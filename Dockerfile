@@ -7,8 +7,7 @@ ARG NPM_TOKEN
 COPY package*.json ./
 
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /usr/src/app/.npmrc
-
-RUN npm "build:prod"
+RUN npm ci build:prod
 
 COPY build ./build
 
